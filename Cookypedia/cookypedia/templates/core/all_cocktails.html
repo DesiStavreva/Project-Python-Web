@@ -15,6 +15,13 @@
 
     <main>
         <h2>All Cocktails</h2>
+        <form action="{% url 'all cocktails' %}" method="get">
+            {{ search_form_cocktail }}
+            <button>
+                <img src="{% static 'images/search.png' %}" height="12" alt="img2">
+            </button>
+            {% csrf_token %}
+        </form>
         <div>
             {% for cocktail in cocktails %}
                 <div>

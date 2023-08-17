@@ -19,6 +19,7 @@ class ChoicesStringsMixin(ChoicesMixin):
 
 
 class Type(ChoicesStringsMixin, Enum):
+    MAKE_YOUR_CHOICE = '-------'
     ALCOHOLIC = 'Alcoholic'
     NON_ALCOHOLIC = 'Non-Alcoholic'
 

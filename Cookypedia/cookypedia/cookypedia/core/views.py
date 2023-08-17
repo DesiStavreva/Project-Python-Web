@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from cookypedia.cocktail.forms import SearchCocktailForm
 from cookypedia.cocktail.models import CocktailModel
 from cookypedia.core.forms import RecipeCommentForm, CocktailCommentForm
 from cookypedia.profiles.models import CustomUser
+from cookypedia.recipe.forms import SearchRecipeForm
 from cookypedia.recipe.models import RecipeModel
 
 """"
@@ -41,9 +43,20 @@ def cocktailbook(request):
 def all_recipes(request):
     recipes = RecipeModel.objects.all()
     comment_form_recipe = RecipeCommentForm()
+
+    search_form_recipe = SearchRecipeForm(request.GET)
+    search_pattern = None
+
+    if search_form_recipe.is_valid():
+        search_pattern = search_form_recipe.cleaned_data['type']
+
+    if search_pattern:
+        recipes = recipes.filter(type__icontains=search_pattern)
+
     context = {
         'recipes': recipes,
         'comment_form_recipe': comment_form_recipe,
+        'search_form_recipe': SearchRecipeForm(),
     }
     return render(request, 'core/all_recipes.html', context)
 
@@ -51,9 +64,20 @@ def all_recipes(request):
 def all_cocktails(request):
     cocktails = CocktailModel.objects.all()
     comment_form_cocktail = CocktailCommentForm()
+
+    search_form_cocktail = SearchCocktailForm(request.GET)
+    search_pattern = None
+
+    if search_form_cocktail.is_valid():
+        search_pattern = search_form_cocktail.cleaned_data['type']
+
+    if search_pattern:
+        cocktails = cocktails.filter(type__icontains=search_pattern)
+
     context = {
         'cocktails': cocktails,
         'comment_form_cocktail': comment_form_cocktail,
+        'search_form_cocktail': SearchCocktailForm()
     }
     return render(request, 'core/all_cocktails.html', context)
 

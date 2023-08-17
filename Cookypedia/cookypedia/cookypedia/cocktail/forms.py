@@ -1,6 +1,6 @@
 from django import forms
 
-from cookypedia.cocktail.models import CocktailModel
+from cookypedia.cocktail.models import CocktailModel, Type
 
 
 class BaseForm(forms.ModelForm):
@@ -40,3 +40,10 @@ class CocktailAddForm(BaseForm):
 
 class CocktailEditForm(BaseForm):
     pass
+
+
+class SearchCocktailForm(forms.Form):
+    type = forms.ChoiceField(
+        choices=Type.choices(),
+        required=False,
+    )

@@ -22,6 +22,7 @@ class ChoicesStringsMixin(ChoicesMixin):
 
 
 class Type(ChoicesStringsMixin, Enum):
+    MAKE_YOUR_CHOICE = '-------'
     STARTER = 'Starter'
     MAIN = 'Main'
     DESSERT = 'Dessert'

@@ -1,6 +1,6 @@
 from django import forms
 
-from cookypedia.recipe.models import RecipeModel
+from cookypedia.recipe.models import RecipeModel, Type
 
 
 class BaseForm(forms.ModelForm):
@@ -41,3 +41,10 @@ class RecipeAddForm(BaseForm):
 
 class RecipeEditForm(BaseForm):
     pass
+
+
+class SearchRecipeForm(forms.Form):
+    type = forms.ChoiceField(
+        choices=Type.choices(),
+        required=False,
+    )
