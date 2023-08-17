@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}"/>
+    <title>Cookypedia</title>
+</head>
+<body>
+<div id="wrapper">
+
+    {% include 'core/navbar.html' %}
+
+    <main>
+        <h2>All Cocktails</h2>
+        <div>
+            {% for cocktail in cocktails %}
+                <div>
+                <div class="form">
+                    <div id="details-description">
+                        <p>{{ cocktail.name }}</p>
+                        <p><img src="{{ cocktail.cocktail_photo.url }}" width="300"></p>
+                        <p>Username: {{ cocktail.user.username }}</p></div>
+                    <p>
+                    <div id="action-buttons">
+                        <a href="{% url 'other cocktail details' pk=cocktail.pk %}" id="edit-btn">More Info</a>
+                    </div>
+
+                    {% for comment in cocktail.cocktailcomment_set.all %}
+                        <div class="comments" id="details-description">
+                            <div class="top">
+                                <ul>
+                                    <li>{{ comment.user.first_name }} {{ comment.user.last_name }}
+                                        said: {{ comment.comment_text }}</li>
+                                </ul>
+                                At: {{ comment.date_time_of_publication }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <form method="post" action="{% url 'comment cocktail' cocktail_id=cocktail.pk %}"
+                          id="details-description">
+                        {{ comment_form_cocktail }}
+                        {% csrf_token %}
+                        <button type="submit" id="details-description">Post</button>
+                    </form>
+                </div>
+
+            {% endfor %}
+
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

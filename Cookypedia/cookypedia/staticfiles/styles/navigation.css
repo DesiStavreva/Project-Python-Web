@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+body {
+  color: rgb(208, 255, 192);
+  background: rgb(204, 223, 234);
+  background: linear-gradient(94deg, rgb(218, 250, 208) 0%, rgb(113, 149, 215) 100%);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  width: 97vw;
+  font-family: 'Century', cursive;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 3em;
+  width: 90vw;
+}
+
+nav {
+ 
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+
+#logo-img {
+  height: 100px;
+ 
+}
+
+nav a {
+  font-size: 1.5rem;
+  color: rgb(208, 255, 192);
+  font-weight: 400;  
+}
+
+header a {
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: rgb(204, 223, 234);
+  text-decoration: underline;
+}

@@ -1,0 +1,21 @@
+{% extends 'recipe/base-recipe.html' %}
+{% block content %}
+
+    <main>
+        <section id="details">
+            <div id="details-description">
+                <h2>Edit Recipe</h2>
+                <form method="post" action="{% url 'recipe edit' pk=recipe.pk %}" enctype="multipart/form-data"
+                      class="form">
+                    {{ form.as_p }}
+                    <div>
+                        {% csrf_token %}
+                        <button type="submit">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

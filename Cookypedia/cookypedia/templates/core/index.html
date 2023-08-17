@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="This is my first project">
+    <meta name="author" content="Desi Stavreva">
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}"/>
+    <title>Cookypedia</title>
+</head>
+<body>
+<div id="wrapper">
+
+    {% include 'core/navbar.html' %}
+
+    <main>
+
+        <div>
+            {% if request.user.is_authenticated %}
+
+                <div id="action-buttons">
+                    <a href="{% url 'all recipes' %}" id="edit-btn">Open the CookBook</a>
+                    <a href="{% url 'all cocktails' %}" id="delete-btn">Open the CocktailBook</a>
+                </div>
+
+            {% else %}
+                <h2>Discover your new favorite recipe</h2>
+                <p><img src="{% static 'images/meals.png' %}" alt="home" height="380" width="380"></p>
+            {% endif %}
+        </div>
+    </main>
+</div>
+</body>
+</html>

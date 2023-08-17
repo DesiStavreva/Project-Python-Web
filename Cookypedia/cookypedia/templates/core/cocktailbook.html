@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static '/styles/styles.css' %}"/>
+    <title>Cookypedia</title>
+</head>
+<body>
+<div id="wrapper">
+
+    {% include 'core/navbar.html' %}
+
+    <main>
+
+        <div id="details-wrapper">
+
+            {% if cocktails %}
+                <h2>Cocktails</h2>
+            {% endif %}
+            <section id="dashboard">
+
+                {% for cocktail in cocktails %}
+
+                    <div id="details-description">
+
+                        {% if cocktail.cocktail_photo %}
+                            <img src="{{ cocktail.cocktail_photo.url }}">
+                        {% endif %}
+                        <h3 class="title">{{ cocktail.name }}</h3>
+
+                        <p class="description">{{ cocktail.type }}</p>
+                        <div id="action-buttons">
+                            <a href="{% url 'cocktail details' pk=cocktail.pk %}" id="edit-btn">More Info</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <h2>No cocktail info yet.</h2>
+                {% endfor %}
+            </section>
+        </div>
+    </main>
+</div>
+</body>
+</html>

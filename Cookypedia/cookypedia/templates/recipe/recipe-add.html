@@ -1,0 +1,20 @@
+{% extends 'recipe/base-recipe.html' %}
+{% block content %}
+
+    <main>
+
+        <section id="details">
+            <div id="details-description">
+                <h2>Add Recipe</h2>
+                <form action="{% url 'recipe add' %}" enctype="multipart/form-data" method="post" class="form">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <button class="add-btn" type="submit">Add Recipe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'recipe/base-recipe.html' %}
+{% block content %}
+
+    <main>
+
+        <section id="details">
+            <div id="details-wrapper">
+                <h2>Cocktail Details</h2>
+                <img id="details-img" src="{{ cocktail.cocktail_photo.url }}" alt="{{ cocktail.name }}"/>
+
+                <p id="details-title">{{ cocktail.name }}</p>
+                <div id="info-wrapper">
+                    <div id="details-description">
+
+                        <p id="nutrition">Type: {{ cocktail.type }}</p>
+
+                        <p id="nutrition">Ingredients: {{ cocktail.ingredients }}</p>
+
+                        <p id="nutrition">Method of preparation: {{ cocktail.method }}</p>
+
+                    </div>
+
+                    <div id="action-buttons">
+                        <a href="{% url 'cocktail edit' pk=cocktail.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'cocktail delete' pk=cocktail.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

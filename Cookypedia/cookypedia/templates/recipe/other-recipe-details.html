@@ -1,0 +1,30 @@
+{% extends 'recipe/base-recipe.html' %}
+{% block content %}
+
+    <main>
+
+        <section id="details">
+            <div id="details-wrapper">
+                <h2>Recipe Details</h2>
+                <img id="details-img" src="{{ recipe.recipe_photo.url }}" alt="{{ recipe.name }}"/>
+
+                <p id="details-title">{{ recipe.name }}</p>
+                <div id="info-wrapper">
+                    <div id="details-description">
+
+                        <p id="nutrition">Type: {{ recipe.type }}</p>
+
+                        <p id="nutrition">Ingredients: {{ recipe.ingredients }}</p>
+
+                        <p id="nutrition">Cook time: {{ recipe.cook_time }}</p>
+
+                        <p id="nutrition">Method of preparation: {{ recipe.method }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

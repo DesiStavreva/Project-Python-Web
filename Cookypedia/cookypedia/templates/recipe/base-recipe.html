@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=\, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}"/>
+    <title>Cookypedia</title>
+</head>
+<body>
+<div id="wrapper">
+    <header>
+
+        <a id="logo" href="{% url 'index' %}">
+            <img id="logo-img" src="{% static 'images/logo.jpg' %}" alt="logo"/>
+        </a>
+        <nav>
+            <div class="user">
+                <p><a href="{% url 'cookbook' %}">My Cookbook</a>
+                    <a href="{% url 'cocktailbook' %}">My Cocktailbook</a></p>
+                <p><a href="{% url 'recipe add' %}">Add Recipe</a>
+                    <a href="{% url 'cocktail add' %}">Add Cocktail</a></p>
+                <p><a href="{% url 'profile details' pk=request.user.pk %}">
+                    <i>{{ request.user.first_name }} {{ request.user.last_name }}</i></a>
+                    <a href="{% url 'logout user' %}"><i>Logout</i></a></p>
+            </div>
+            <div class="guest">
+
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</div>
+</body>
+</html>

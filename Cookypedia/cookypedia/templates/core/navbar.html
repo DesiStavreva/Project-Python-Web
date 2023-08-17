@@ -1,0 +1,39 @@
+{% load static %}
+<header>
+
+    <a id="logo" href="{% url 'index' %}">
+        <p><img src="{% static '/images/logo.jpg' %}" alt="logo" height="100" width="100"></p>
+    </a>
+
+    <nav>
+        <form
+                action="{% url 'login user' %}"
+                method="post">
+
+            {{ form.as_p }}
+
+            <input type="hidden" value="{{ next }}" name="next"/>
+
+            <div>
+
+                {% if request.user.is_authenticated %}
+                    <p><a href="{% url 'cookbook' %}">My Cookbook</a>
+                        <a href="{% url 'cocktailbook' %}">My Cocktailbook</a></p>
+                    <p><a href="{% url 'recipe add' %}">Add Recipe</a>
+                        <a href="{% url 'cocktail add' %}">Add Cocktail</a></p>
+                    <p><a href="{% url 'profile details' pk=request.user.pk %}">
+                        <i>{{ request.user.first_name }} {{ request.user.last_name }}</i></a>
+                        <a href="{% url 'logout user' %}"><i>Logout</i></a></p>
+
+                {% else %}
+                    <a href="{% url 'login user' %}">Login</a>
+                    or
+                    <a href="{% url 'register user' %}">Register</a>
+                {% endif %}
+
+            </div>
+
+            {% csrf_token %}
+        </form>
+    </nav>
+</header>
