@@ -8,11 +8,6 @@ from cookypedia.profiles.models import CustomUser
 from cookypedia.recipe.forms import SearchRecipeForm
 from cookypedia.recipe.models import RecipeModel
 
-""""
-•	http://localhost:8000/ - index page
-•	http://localhost:8000/cookbook/ - cookbook page
-"""
-
 
 def index(request):
 
