@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.contrib.auth import get_user_model
 
-UserModel = get_user_model()
+from cookypedia.profiles.models import CustomUser
 
 
-@admin.register(UserModel)
-class UserModelAdmin(admin.ModelAdmin):
-    pass
+@admin.register(CustomUser)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'profile_image', 'age')
+    list_per_page = 10
+    list_filter = ('age',)
